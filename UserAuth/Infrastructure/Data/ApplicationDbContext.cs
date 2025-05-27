@@ -16,5 +16,5 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         base.OnModelCreating(modelBuilder);
     }
     
-    public DbSet<Entry> Entries { get; set; }
+    public DbSet<Entry> Entry { get; set; }
 }

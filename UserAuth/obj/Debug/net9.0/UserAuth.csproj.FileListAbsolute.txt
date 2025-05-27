@@ -166,3 +166,4 @@ C:\Users\user\Desktop\Auth-CQRS\UserAuth\obj\Debug\net9.0\UserAuth.genruntimecon
 C:\Users\user\Desktop\Auth-CQRS\UserAuth\obj\Debug\net9.0\ref\UserAuth.dll
 C:\Users\user\Desktop\Auth-CQRS\UserAuth\bin\Debug\net9.0\FluentValidation.dll
 C:\Users\user\Desktop\Auth-CQRS\UserAuth\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\user\Desktop\Auth-CQRS\UserAuth\obj\Debug\net9.0\UserAuth.sourcelink.json
