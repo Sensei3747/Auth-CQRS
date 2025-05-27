@@ -3,4 +3,4 @@ using UserAuth.Domain.Abstractions;
 
 namespace UserAuth.Application.Users.Register;
 
-public record RegisterUserCommand(string email, string password) : ICommand<string>;
+public record RegisterUserCommand(string name, string email, string password) : ICommand<string>;

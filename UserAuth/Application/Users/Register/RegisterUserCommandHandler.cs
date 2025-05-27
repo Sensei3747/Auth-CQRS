@@ -1,5 +1,6 @@
 using UserAuth.Application.Abstractions.Messaging;
 using UserAuth.Application.Abstractions.Auth;
+using UserAuth.Application.Abstractions.Clock;
 using UserAuth.Domain.Abstractions;
 using UserAuth.Domain.Entry;
 using UserAuth.Application.Users.Register;
@@ -12,12 +13,14 @@ internal sealed class RegisterUserCommandHandler : ICommandHandler<RegisterUserC
     private readonly IPasswordHasher _passwordHasher;
     private readonly IEntryRepository _entryRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IDateTimeProvider _dateTimeProvider;
 
-    public RegisterUserCommandHandler(IPasswordHasher passwordHasher, IEntryRepository entryRepository, IUnitOfWork unitOfWork)
+    public RegisterUserCommandHandler(IPasswordHasher passwordHasher, IEntryRepository entryRepository, IUnitOfWork unitOfWork, IDateTimeProvider dateTimeProvider)
     {
         _passwordHasher = passwordHasher;
         _entryRepository = entryRepository;
         _unitOfWork = unitOfWork;
+        _dateTimeProvider = dateTimeProvider;
     }
 
     public async Task<Result<string>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -29,12 +32,12 @@ internal sealed class RegisterUserCommandHandler : ICommandHandler<RegisterUserC
         }
 
         var hashedPassword = _passwordHasher.HashPassword(request.password);
-        var entry = Entry.Create(request.email, hashedPassword);
+        var entry = Entry.Create(request.name, request.email, hashedPassword, _dateTimeProvider.UtcNow);
 
         _entryRepository.Add(entry);
         await _unitOfWork.SaveChangesAsync();
 
-        return entry.Email;
+        return entry.Name;
 
     }
-}
+}   

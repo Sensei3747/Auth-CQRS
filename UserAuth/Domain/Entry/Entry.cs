@@ -1,30 +1,28 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace UserAuth.Domain.Entry;
-
 public sealed class Entry
 {
-    [Key]
-    public Guid Id { get; set; }
-
-    [Required]
-    [EmailAddress]
-    public string Email { get; set; }
-
-    [Required]
-    [MaxLength(100)]
-    public string PasswordHash { get; set; }
-
-    public Entry(string email, string passwordHash)
+    private Entry(string name, string email, string passwordHash, DateTime createdOn)
     {
-        Id = Guid.NewGuid();
+        Name = name;
         Email = email;
         PasswordHash = passwordHash;
+        CreatedOn = createdOn;
     }
 
-    public static Entry Create(string email, string passwordHash)
+    private Entry()
     {
-        return new Entry(email, passwordHash);
     }
-    
+
+    public long Id { get; private set; }
+    public string Name { get; private set; }
+    public string Email { get; private set; }
+    public string PasswordHash { get; private set; }
+    public DateTime CreatedOn { get; private set; }
+
+    public static Entry Create(string name, string email, string passwordHash, DateTime createdOn)
+    {
+        var user = new Entry(name, email, passwordHash, createdOn);
+
+        return user;
+    }
 }

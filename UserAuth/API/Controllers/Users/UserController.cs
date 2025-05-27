@@ -24,7 +24,7 @@ public class UserController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var command = new RegisterUserCommand(request.Email, request.Password);
+        var command = new RegisterUserCommand(request.Username, request.Email, request.Password);
 
         var result = await _sender.Send(command);
         if (result.IsFailure)
