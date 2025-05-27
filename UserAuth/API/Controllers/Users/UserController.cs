@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 
-namespace UserAuth.Controllers.Users;
+namespace UserAuth.API.Controllers.Users;
 
 [Route("api/users")]
 [ApiController]
