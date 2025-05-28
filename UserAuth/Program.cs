@@ -1,5 +1,6 @@
 using UserAuth;
 using UserAuth.Extensions;
+using UserAuth.Hubs;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +37,17 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ChatClient", builder =>
+    {
+        builder.WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+    });
 });
 
 var app = builder.Build();

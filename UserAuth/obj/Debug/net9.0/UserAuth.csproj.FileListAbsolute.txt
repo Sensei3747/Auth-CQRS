@@ -167,3 +167,6 @@ C:\Users\user\Desktop\Auth-CQRS\UserAuth\obj\Debug\net9.0\refint\UserAuth.dll
 C:\Users\user\Desktop\Auth-CQRS\UserAuth\obj\Debug\net9.0\UserAuth.pdb
 C:\Users\user\Desktop\Auth-CQRS\UserAuth\obj\Debug\net9.0\UserAuth.genruntimeconfig.cache
 C:\Users\user\Desktop\Auth-CQRS\UserAuth\obj\Debug\net9.0\ref\UserAuth.dll
+C:\Users\user\Desktop\Auth-CQRS\UserAuth\bin\Debug\net9.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\user\Desktop\Auth-CQRS\UserAuth\bin\Debug\net9.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\user\Desktop\Auth-CQRS\UserAuth\bin\Debug\net9.0\StackExchange.Redis.dll

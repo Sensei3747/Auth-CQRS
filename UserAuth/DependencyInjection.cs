@@ -1,6 +1,10 @@
 using UserAuth.Application.Abstractions.Auth;
 using UserAuth.Application.Abstractions.Behaviors;
 using UserAuth.Domain.Abstractions;
+using UserAuth.Application.Conversations;
+using UserAuth.Application.Rooms;
+using UserAuth.Domain.Conversations;
+using UserAuth.Domain.Rooms;
 using UserAuth.Domain.Users;
 using UserAuth.Infrastructure.Repositories;
 using UserAuth.Infrastructure.Auth;
@@ -45,7 +49,8 @@ public static class DependencyInjection
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IEntryRepository, EntryRepository>();
-
+        services.AddScoped<IDateTimeProvider, DateTimeProvider>();
+        
         return services;
     }
 
@@ -59,7 +64,17 @@ public static class DependencyInjection
             options.UseSqlServer(connectionString);
         });
 
+        services.AddStackExchangeRedisCache(redisOptions => {
+
+           string connection = configuration.GetConnectionString("Redis");
+
+           redisOptions.Configuration = connection;
+        });
+
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        services.AddScoped<IRoomRepository, RoomRepository>();
+        services.AddScoped<IConversationRepository, ConversationRepository>();
+        services.AddScoped<IMessageRepository, MessageRepository>();
 ;
     }
 

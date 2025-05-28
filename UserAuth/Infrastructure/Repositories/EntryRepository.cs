@@ -33,7 +33,7 @@ internal sealed class EntryRepository : IEntryRepository
 
         return entry;
     }
-    public async Task<Entry?> GetById(Guid id)
+    public async Task<Entry?> GetById(long id)
     {
         var user = await _context.Set<Entry>().FindAsync(id);
         return user;

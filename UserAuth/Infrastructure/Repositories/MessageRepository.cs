@@ -4,15 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace UserAuth.Infrastructure.Repositories;
 
-public interface IMessageRepository
-{
-    Task<List<Message>> GetByConversationIdAsync(string conversationId, int skip, int limit);
-    Task AddAsync(Message message);
-    Task UpdateAsync(string id, Message message);
-    Task RemoveAsync(string id);
-}
-
-
 public class MessageRepository : IMessageRepository
 {
     private readonly ApplicationDbContext _context;
@@ -21,7 +12,7 @@ public class MessageRepository : IMessageRepository
     {
         _context = context;
     }
-    public async Task<List<Message>> GetByConversationIdAsync(string conversationId, int skip, int limit)
+    public async Task<List<Message>> GetByConversationIdAsync(long conversationId, int skip, int limit)
     {
         return await _context.Set<Message>()
             .Where(m => m.ConversationId == conversationId)

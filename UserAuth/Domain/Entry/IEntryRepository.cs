@@ -7,6 +7,6 @@ public interface IEntryRepository
 {
     void Add(Entry entry);
     Task<Entry?> GetByEmail(string email);
-    Task<Entry?> GetById(Guid id);
+    Task<Entry?> GetById(long id);
     //Task<Entry?> GetByUsername(string username);
 }
