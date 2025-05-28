@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using UserAuth.Domain.Entry;
 using UserAuth.Domain.Abstractions;
+using UserAuth.Domain.Conversations;
 
 namespace UserAuth.Infrastructure.Data;
 
